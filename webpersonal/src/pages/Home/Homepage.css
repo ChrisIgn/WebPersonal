@@ -1,0 +1,106 @@
+/* Contenedor principal de toda la página */
+.portfolio-layout {
+  display: flex;
+  gap: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 60px 20px;
+  align-items: flex-start; /* Clave para que el sticky funcione */
+}
+
+/* --- SECCIÓN IZQUIERDA (ABOUT ME) --- */
+.about-section {
+  width: 35%;
+  position: sticky;
+  top: 60px;
+  display: flex;
+  flex-direction: column;
+  /* El secreto: Reducimos el gap a 12px para que se vean unidas BUT distinct */
+  gap: 12px; 
+}
+
+/* --- SECCIÓN DERECHA (CONTENIDO) --- */
+.content-section {
+  width: 65%; /* Ocupa el 65% restante */
+  display: flex;
+  flex-direction: column;
+  gap: 60px; /* Gran separación entre "Actividad" y "Proyectos" */
+}
+
+/* Títulos sutiles para cada sección del lado derecho */
+.section-title {
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #c4a7a7; /* Tu burdeo apagado */
+  margin-bottom: 20px;
+  margin-top: 0;
+}
+
+/* Solo para que veas el espacio temporalmente */
+.placeholder-box {
+  background: rgba(45, 20, 20, 0.3);
+  border: 1px dashed rgba(230, 90, 90, 0.3);
+  border-radius: 24px;
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-secondary);
+}
+
+/* --- RESPONSIVE (MÓVILES) --- */
+@media (max-width: 900px) {
+  .portfolio-layout {
+    flex-direction: column; /* En móviles se apila todo normal */
+  }
+  .about-section, .content-section {
+    width: 100%;
+    position: relative; /* Quitamos el sticky en móviles */
+    top: 0;
+  }
+}
+
+
+/* --- MENÚ FLOTANTE DE REDES --- */
+.global-socials {
+  position: fixed; /* Se queda fijo aunque hagas scroll */
+  top: 40px;
+  right: 40px;
+  z-index: 100; /* Asegura que siempre esté por encima del resto */
+}
+
+/* El "recuadro circular" tipo píldora */
+.social-pill {
+  display: flex;
+  gap: 20px;
+  background: var(--card-bg); /* Usa tu variable burdeo traslúcida */
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  padding: 12px 24px;
+  border-radius: 50px; /* Lo hace completamente redondeado en los bordes */
+  border: 1px solid var(--border); /* Tu borde rojizo sutil */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.social-pill a {
+  color: var(--text-secondary);
+  font-size: 1.3rem; /* Tamaño perfecto para los iconos */
+  display: flex;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+
+.social-pill a:hover {
+  color: var(--accent-light); /* Tu rojo burdeo vibrante */
+  transform: translateY(-3px); /* Pequeño salto hacia arriba al pasar el mouse */
+}
+
+/* En móviles, lo ajustamos un poco para que no choque con los bordes */
+@media (max-width: 900px) {
+  .global-socials {
+    position: absolute; /* En móvil es mejor absolute para que no cubra el contenido al hacer scroll */
+    top: 20px;
+    right: 20px;
+  }
+}

@@ -1,0 +1,54 @@
+.contact-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 30px;
+}
+
+.contact-content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.contact-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--text-main);
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+.contact-description {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  margin: 0;
+  font-weight: 300;
+}
+
+.contact-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--accent-light); /* Tu rojo burdeo amigable */
+  text-decoration: none;
+  margin-top: 10px;
+  transition: all 0.3s ease;
+  width: fit-content;
+}
+
+.contact-link:hover {
+  color: #ff7b7b; /* Un tono un poco más brillante al pasar el mouse */
+  transform: translateX(5px); /* Deslizamiento sutil a la derecha */
+}
+
+.arrow {
+  transition: transform 0.3s ease;
+}
+
+.contact-link:hover .arrow {
+  transform: translateX(4px); /* La flecha se mueve un poquito más */
+}

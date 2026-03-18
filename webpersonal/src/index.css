@@ -1,0 +1,20 @@
+:root {
+  /* Un burdeo oscuro y sofisticado para el fondo */
+  --bg-color: #1a0a0a; 
+  
+  /* Tarjetas con un matiz rojizo sutil y traslúcido */
+  --card-bg: rgba(45, 20, 20, 0.6); 
+  
+  /* El "Burdeo Amigable" para acentos y estados */
+  --accent: #a52a2a; /* Un tono café rojizo cálido */
+  --accent-light: #e65a5a; /* Para que resalte el texto importante */
+  
+  /* Bordes suaves que separan las tarjetas sin ser agresivos */
+  --border: 1px solid rgba(230, 90, 90, 0.15); /* Un rojo suave en lugar de blanco */
+  
+  --text-main: #fdf2f2;
+  --text-secondary: #c4a7a7;
+  
+  /* ESPACIADO: Aquí corregimos lo de las tarjetas juntas */
+  --gap: 32px; 
+}

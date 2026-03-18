@@ -1,0 +1,84 @@
+.race-card {
+  display: flex;
+  flex-direction: column;
+  padding: 30px;
+}
+
+.race-container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.track-item {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.track-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.proj-name {
+  color: var(--text-main);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.05rem;
+  transition: color 0.3s;
+}
+
+.proj-name:hover {
+  color: var(--accent-light);
+}
+
+.proj-percentage {
+  font-size: 0.85rem;
+  color: var(--accent-light);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums; /* Evita que el texto salte cuando los números cambian */
+}
+
+/* --- LA PISTA --- */
+.track-background {
+  width: 100%;
+  height: 8px; /* Pista fina y elegante */
+  background: rgba(255, 255, 255, 0.05); /* Fondo de la pista */
+  border-radius: 10px;
+  position: relative;
+  overflow: visible; /* Permite que el corredor sobresalga un poco */
+}
+
+.track-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent), var(--accent-light)); /* Gradiente burdeo */
+  border-radius: 10px;
+  position: relative;
+  transition: width 1s cubic-bezier(0.4, 0, 0.2, 1); /* Animación suave al cargar */
+}
+
+/* El punto que lidera la carrera */
+.racer-dot {
+  position: absolute;
+  right: -6px; /* Lo centra en el borde del progreso */
+  top: -4px;
+  width: 16px;
+  height: 16px;
+  background: #fff;
+  border: 3px solid var(--accent-light);
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(230, 90, 90, 0.6); /* Resplandor rojo */
+}
+
+/* Mensaje del commit */
+.commit-msg {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis; /* Corta textos muy largos con ... */
+  opacity: 0.7;
+}
