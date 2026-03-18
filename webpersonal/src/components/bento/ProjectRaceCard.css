@@ -260,3 +260,91 @@
   margin: 0;
   line-height: 1.5;
 }
+
+
+/* --- EL NUEVO TOOLTIP SOFISTICADO (MINI COMMIT CARD) --- */
+.milestone-tooltip {
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  bottom: 160%; /* Separación un poco mayor para que respire */
+  left: 50%;
+  transform: translateX(-50%) translateY(10px);
+  
+  /* ESTILO DE FONDO Y CRISTAL (Glassmorphism mejorado) */
+  background: rgba(26, 10, 10, 0.95); /* Fondo burdeo ultra oscuro */
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid var(--border);
+  padding: 16px; /* Padding generoso y limpio */
+  border-radius: 16px; /* Más redondeado y suave */
+  
+  width: max-content;
+  max-width: 240px; /* Un poco más ancho para que el texto no se corte */
+  
+  /* SOMBRA Y RESPLANDOR ROJO SUTIL (Glow effect) */
+  box-shadow: 0 10px 40px rgba(0,0,0,0.6), 
+              0 0 15px rgba(230, 90, 90, 0.2); 
+  
+  display: flex;
+  flex-direction: column;
+  pointer-events: none;
+  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); /* Animación más suave al flotar */
+  z-index: 50; /* Asegura que flote sobre todo */
+}
+
+.milestone-dot:hover .milestone-tooltip {
+  visibility: visible;
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* --- CABECERA (Fecha / %) --- */
+.tooltip-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px; /* Más separación con el contenido inferior */
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05); /* Línea divisoria súper sutil */
+}
+
+.tooltip-date {
+  font-size: 0.65rem;
+  color: #8b8b8b; /* Tono grisáceo para la fecha (menos contraste, jerarquía) */
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  font-weight: 300;
+}
+
+.tooltip-percentage {
+  font-size: 0.8rem; /* Un poquito más grande y legible */
+  font-weight: 700;
+  color: var(--accent-light); /* Tu rojo burdeo vibrante */
+  background: rgba(230, 90, 90, 0.1); /* Fondo rojizo más sutil */
+  padding: 3px 8px;
+  border-radius: 6px;
+  font-family: 'Geist Mono', 'Fira Code', monospace; /* Fuente mono para el número (si la tienes) */
+}
+
+/* --- NUEVO: CONTENEDOR DE MENSAJE (Icono + Texto) --- */
+.tooltip-content-wrapper {
+  display: flex;
+  align-items: flex-start; /* Icono alineado arriba si el texto baja */
+  gap: 10px; /* Espaciado perfecto entre icono y texto */
+}
+
+.commit-icon {
+  font-size: 0.9rem;
+  color: var(--accent-light);
+  margin-top: 3px; /* Pequeño ajuste visual para que el icono se alinee con la primera línea de texto */
+  opacity: 0.8;
+}
+
+.tooltip-msg {
+  font-size: 0.85rem; /* Un poquito más grande y legible */
+  color: var(--text-main);
+  line-height: 1.6; /* Mayor interlineado para mejor lectura */
+  white-space: normal; /* Permite que el texto baje a la siguiente línea */
+  font-weight: 400;
+}
