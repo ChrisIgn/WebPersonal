@@ -4,7 +4,7 @@ import './ProjectRaceCard.css';
 
 const ProjectsRaceCard = () => {
   // Pon tu usuario real y los nombres exactos de los repositorios que quieres mostrar
-  const { projects, loading } = useProjectRace('ChrisIgn', ['Los_Palomitos']);
+  const { projects, loading } = useProjectRace('ChrisIgn', ['Los_Palomitos', 'WebPersonal']);
 
   return (
     <section className="card race-card">
