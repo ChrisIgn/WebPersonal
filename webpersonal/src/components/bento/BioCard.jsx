@@ -11,7 +11,7 @@ const BioCard = () => {
       </div>
 
       <div className="bio-header">
-        <img src="https://via.placeholder.com/80" alt="Avatar" className="avatar" />
+        <img src="https://github.com/ChrisIgn.png" alt="Avatar de Christian" className="avatar" />
         <div className="bio-title">
           <h1>Hola, soy <span className="highlight">Christian</span></h1>
           <h2>Junior Frontend Developer</h2>

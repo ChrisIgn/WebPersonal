@@ -1,9 +1,12 @@
-import { useProjectRace } from '../../../hooks/useProjectRace';
+import { useProjectRace } from '../../hooks/useProjectRace';
 import { FiFlag } from 'react-icons/fi';
-import './ProjectsRaceCard.css';
+import './ProjectRaceCard.css';
+
+// Constante fuera del componente para evitar bucles
+const MIS_REPOSITORIOS = ['WebPersonal']; 
 
 const ProjectsRaceCard = () => {
-  const { projects, loading } = useProjectRace('ChrisIgn', ['Los_Palomitos', 'WebPersonal']);
+  const { projects, loading, error } = useProjectRace('ChrisIgn', MIS_REPOSITORIOS);
 
   return (
     <section className="card race-card">
@@ -13,7 +16,22 @@ const ProjectsRaceCard = () => {
 
       <div className="race-container">
         {loading ? (
-          <p className="loading-text">Cargando progreso...</p>
+          // SKELETON LOADER (Mientras carga)
+          <div className="skeleton-pulse">
+            <div className="skeleton-text" style={{ width: '120px', marginBottom: '10px' }}></div>
+            <div className="track-background" style={{ marginBottom: '15px' }}></div>
+          </div>
+        ) : error || projects.length === 0 ? (
+          // ESTADO VACÍO / ERROR (Esperando corredores)
+          <div className="waiting-racers-state">
+            <span className="pit-stop-icon">🚥</span>
+            <h4 className="waiting-title">Esperando corredores...</h4>
+            <p className="waiting-desc">
+              {error 
+                ? "Boxes cerrados temporalmente (Límite de GitHub alcanzado). Los autos volverán a la pista pronto." 
+                : "Aún no hay avances registrados en esta pista."}
+            </p>
+          </div>
         ) : (
           projects.map((proj, index) => (
             <div key={index} className="track-item">
