@@ -4,7 +4,9 @@ import { IoMailOutline } from 'react-icons/io5';
 
 import BioCard from '../../components/bento/BioCard';
 import ContactCard from '../../components/bento/ContactCard'; // Si decides conservarla
-import ProjectsRaceCard from '../../components/bento/ProjectRaceCard'; // El nuevo componente de carrera de proyectos
+import ProjectsRaceCard from '../../components/bento/ProjectRaceCard'; // El nuevo componente de carrera de proyectos}
+import WeatherCard from '../../components/bento/WeatherCard';
+import StatusCard from '../../components/bento/StatusCard'; // Si decides conservarla
 import './Homepage.css';
 
 const Home = () => {
@@ -23,17 +25,22 @@ const Home = () => {
       {/* SECCIÓN 1: ABOUT ME (Izquierda) */}
       <aside className="about-section">
         <BioCard />
-        {/* Aquí puedes dejar la ContactCard solo con tu ubicación y un botón, o quitarla si ya tienes las redes arriba */}
         <ContactCard /> 
       </aside>
 
       {/* SECCIÓN 2: CONTENIDO (Derecha) */}
       <main className="content-section">
         <section className="dashboard-section">
-          <div className="placeholder-box">GitHub / Status irán aquí</div>
-        </section>
-        <section className="projects-section">
+          
+          {/* NUEVO: Fila superior para tarjetas pequeñas */}
+          <div className="bento-row">
+            <WeatherCard />
+            <StatusCard />
+          </div>
+
+          {/* Fila inferior para tarjetas anchas */}
           <ProjectsRaceCard />
+
         </section>
       </main>
 

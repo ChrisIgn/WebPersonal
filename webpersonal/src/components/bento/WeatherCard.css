@@ -1,43 +1,93 @@
-
 .weather-card {
-  background: #161616;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 24px;
-  padding: 24px;
   display: flex;
   flex-direction: column;
+  padding: 24px;
   justify-content: space-between;
-  grid-column: span 1; /* Ocupa 1 espacio en el bento */
+
+  /* --- LOS ARREGLOS CRUCIALES PARA EL TAMAÑO --- */
+  aspect-ratio: 1 / 1; /* Sigue siendo cuadrada */
+  width: 100%; /* Relativo al grid */
+  max-width: 250px; /* NUEVO: El límite mágico. No crecerá más que esto */
+  margin: 0 auto; /* NUEVO: Si la columna es más ancha, la tarjeta se centra */
 }
 
-.weather-info {
+.weather-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px; /* Reducimos el gap para que el contenido no se asfixie */
+  height: 100%;
+}
+
+/* --- SECCIÓN PRINCIPAL --- */
+.location {
   display: flex;
   align-items: center;
-  gap: 12px;
-}
-
-.weather-icon {
-  font-size: 2rem;
-}
-
-.temp {
-  font-size: 2.2rem;
-  font-weight: 600;
-  margin: 0;
-}
-
-.weather-footer {
-  margin-top: 10px;
-}
-
-.city {
-  margin: 0;
-  font-weight: 500;
+  gap: 6px;
+  color: var(--text-secondary);
   font-size: 0.9rem;
+  margin-bottom: 4px; /* Ajuste sutil */
 }
 
-.condition {
+.location-icon {
+  color: var(--accent-light);
+}
+
+.temperature-block {
+  display: flex;
+  flex-direction: column;
+}
+
+.temperature {
+  font-size: 2.8rem; /* Reducido de 3.5rem para que quede elegante en el recuadro */
+  font-weight: 700;
+  color: var(--text-main);
   margin: 0;
-  color: #a0a0a0;
-  font-size: 0.8rem;
+  line-height: 1;
+  letter-spacing: -2px;
+}
+
+.weather-desc {
+  font-size: 0.95rem;
+  color: var(--accent-light);
+  text-transform: capitalize;
+  margin-top: 4px;
+  font-weight: 500;
+}
+
+/* --- DETALLES EXTRA (Humedad/Viento) --- */
+.weather-details {
+  display: flex;
+  flex-wrap: wrap; /* NUEVO: Permite que los detalles bajen de línea si la tarjeta es angosta */
+  gap: 8px; /* Reducido de 16px para mantener la compacidad */
+  margin-top: auto; /* Mantiene los detalles empujados hacia el fondo */
+}
+
+.detail-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 6px 10px; /* Un poco más compacto */
+  border-radius: 8px;
+  font-size: 0.7rem; /* Texto un poquito más pequeño */
+  color: var(--text-secondary);
+}
+
+.detail-icon {
+  color: var(--accent-light);
+  opacity: 0.8;
+}
+
+/* --- UTILIDADES --- */
+.weather-error {
+  color: var(--accent-light);
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+.weather-skeleton {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }

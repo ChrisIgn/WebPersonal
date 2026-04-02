@@ -104,3 +104,24 @@
     right: 20px;
   }
 }
+
+
+/* --- CUADRÍCULA BENTO (Columna Derecha) --- */
+.dashboard-section {
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Separación vertical entre la fila de arriba y los proyectos */
+}
+
+.bento-row {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Crea 2 columnas del mismo tamaño */
+  gap: 20px; /* Separación horizontal entre Clima y Estado */
+}
+
+/* En celulares, hacemos que vuelvan a apilarse una sobre otra */
+@media (max-width: 900px) {
+  .bento-row {
+    grid-template-columns: 1fr; 
+  }
+}

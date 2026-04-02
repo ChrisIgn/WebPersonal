@@ -1,13 +1,31 @@
+// src/components/bento/StatusCard/StatusCard.jsx
+import { FiActivity } from 'react-icons/fi';
 import './StatusCard.css';
 
-const StatusCard = ({ status = "Disponible para proyectos" }) => {
+const StatusCard = () => {
   return (
-    <section className="status-card">
-      <div className="status-indicator">
-        <span className="dot pulse"></span>
-        <span className="status-text">{status}</span>
+    <section className="card status-card square-card">
+      {/* TÍTULO ESTÁNDAR (Le damos una clase específica para el cuadrado) */}
+      <div className="card-top-label square-label">
+        <FiActivity className="label-icon" /> Estado
       </div>
-      <p className="label">Status actual</p>
+
+      <div className="status-content-centered">
+        
+        {/* INDICADOR Y TÍTULO (Ahora apilados verticalmente) */}
+        <div className="status-indicator-v">
+          <div className="pulse-container">
+            <div className="pulsing-dot"></div>
+          </div>
+          <h3 className="status-text-main">Disponible</h3>
+        </div>
+        
+        {/* TEXTO SECUNDARIO (Ultra corto y minimalista) */}
+        <p className="status-subtext-clean">
+          Frontend Dev • Chile
+        </p>
+
+      </div>
     </section>
   );
 };

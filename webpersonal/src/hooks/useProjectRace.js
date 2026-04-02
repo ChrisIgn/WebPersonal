@@ -16,7 +16,7 @@ export const useProjectRace = (username, repoNames) => {
             if (!res.ok) throw new Error("Error en la petición a GitHub");
             
             const commits = await res.json();
-            const milestones = [];
+            const rawMilestones = [];
             const regex = /(\d{1,3})%/;
 
             for (let commitObj of commits) {
@@ -25,20 +25,46 @@ export const useProjectRace = (username, repoNames) => {
               if (match) {
                 let prog = parseInt(match[1], 10);
                 prog = Math.min(100, Math.max(0, prog));
-                milestones.push({
+                let cleanMessage = msg.replace(/[\(\[\s]*\d{1,3}%[\)\]\s]*/, '').trim();
+                if (cleanMessage === "") cleanMessage = "Actualización de progreso";
+
+                rawMilestones.push({
                   progress: prog,
-                  message: msg,
+                  message: cleanMessage,
                   sha: commitObj.sha,
                   date: new Date(commitObj.commit.author.date).toLocaleDateString()
                 });
               }
             }
 
-            const currentProgress = milestones.length > 0 ? milestones[0].progress : 0;
+            // NUEVO: Agrupamos los commits por "Décadas" (10, 20, 30...)
+            const grouped = {};
+            rawMilestones.forEach(m => {
+              // Calcula la base (ej: 14% -> 10, 29% -> 20)
+              const baseProgress = Math.floor(m.progress / 10) * 10; 
+              
+              if (!grouped[baseProgress]) {
+                grouped[baseProgress] = {
+                  baseProgress: baseProgress,
+                  commits: [] // Aquí guardaremos las micro-versiones
+                };
+              }
+              grouped[baseProgress].commits.push(m);
+            });
+
+            // Ordenamos los grupos de menor a mayor para la pista
+            const milestonesGroups = Object.values(grouped).map(group => {
+              // Ordenamos los micro-commits internamente de menor a mayor %
+              group.commits.sort((a, b) => a.progress - b.progress);
+              return group;
+            }).sort((a, b) => a.baseProgress - b.baseProgress);
+
+            const currentProgress = rawMilestones.length > 0 ? rawMilestones[0].progress : 0;
+
             return {
               name: repoName,
               currentProgress,
-              milestones: milestones.reverse(), 
+              milestonesGroups, // Devolvemos los grupos en lugar de puntos sueltos
               url: `https://github.com/${username}/${repoName}`
             };
           })

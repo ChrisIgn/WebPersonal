@@ -1,43 +1,117 @@
-
-.status-card {
+/* --- LA TARJETA CUADRADA --- */
+.status-card.square-card {
+  aspect-ratio: 1 / 1; /* Esto obliga a que la altura sea igual al ancho */
   display: flex;
   flex-direction: column;
-  justify-content: center; /* Centra el contenido verticalmente */
-  align-items: flex-start;
+  padding: 20px; /* Reducimos el padding para que el contenido no se asfixie */
+  justify-content: flex-start; /* Título arriba, contenido centrado abajo */
+  max-width: 250px; /* Evita que crezca demasiado en pantallas grandes */
+  margin: 0 auto; /* Centra la tarjeta si el grid es más ancho */
 }
 
-.status-indicator {
-  background: rgba(16, 185, 129, 0.1); /* Fondo verde tenue para el punto */
-  padding: 8px 12px;
-  border-radius: 12px;
-  margin-bottom: 10px;
+/* Ajuste sutil para el título en el cuadrado */
+.card-top-label.square-label {
+  margin-bottom: 0; /* Quitamos margen inferior para ganar espacio */
+  justify-content: center; /* Título centrado en el cuadrado */
+  width: 100%;
 }
 
-.dot {
-  width: 10px;
-  height: 10px;
-  background: #10b981; /* Verde esmeralda */
-  border-radius: 50%;
+/* --- CONTENIDO CENTRADO --- */
+.status-content-centered {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; /* Centrado vertical perfecto */
+  flex-grow: 1; /* Ocupa todo el espacio restante */
+  gap: 8px; /* Espacio muy ajustado entre elementos */
+  text-align: center;
 }
 
-.pulse {
-  box-shadow: 0 0 0 rgba(16, 185, 129, 0.4);
-  animation: pulse 2s infinite;
+/* Indicador vertical (Punto sobre el texto) */
+.status-indicator-v {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px; /* Separación entre el punto y el título "Disponible" */
 }
 
-.status-text {
-  font-weight: 500;
-}
-
-.label {
-  color: #555;
-  font-size: 0.8rem;
+/* --- TIPOGRAFÍA AJUSTADA PARA EL CUADRADO --- */
+.status-text-main {
+  font-size: 1.1rem; /* Un poco más grande para que sea lo primero que se lea */
+  color: var(--text-main);
   margin: 0;
+  font-weight: 700;
+  letter-spacing: -0.02em;
 }
 
-@keyframes pulse {
-  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
-  70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(16, 185, 129, 0); }
-  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+.status-subtext-clean {
+  font-size: 0.75rem; /* Pequeño y limpio */
+  color: var(--text-secondary);
+  line-height: 1.4;
+  margin: 0;
+  font-weight: 300;
+  opacity: 0.8;
+}
+/* --- EL EFECTO DE LATIDO (PING) SE MANTIENE --- */
+.pulse-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 12px; /* Un poquito más pequeño */
+  height: 12px;
 }
 
+.pulsing-dot {
+  position: relative;
+  width: 8px; /* Un poquito más pequeño */
+  height: 8px;
+  background-color: #22c55e;
+  border-radius: 50%;
+  z-index: 2;
+  box-shadow: 0 0 8px rgba(34, 197, 94, 0.4);
+}
+
+.pulsing-dot::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  background-color: #22c55e;
+  border-radius: 50%;
+  z-index: 1;
+  animation: ping-wave 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+@keyframes ping-wave {
+  0% {
+    width: 100%;
+    height: 100%;
+    opacity: 0.8;
+  }
+  75%, 100% {
+    width: 320%; /* Un poquito menos expansivo */
+    height: 320%;
+    opacity: 0;
+  }
+}
+
+/* --- TIPOGRAFÍA MÁS COMPACTA --- */
+.status-text {
+  font-size: 0.95rem; /* Shrunk from 1.1rem */
+  color: var(--text-main);
+  margin: 0;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.status-subtext {
+  font-size: 0.8rem; /* Shrunk from 0.9rem */
+  color: var(--text-secondary);
+  line-height: 1.5; /* Un poco más apretado */
+  margin: 0;
+  font-weight: 300;
+}
